@@ -12,7 +12,7 @@ my $builder = Module::Build->new(
     },
     requires => {
         'Carp'                                               => 1.04,
-        'POE::Component::IRC::Plugin::BasePoCoWrap'          => 0.001,
+        'POE::Component::IRC::Plugin::BasePoCoWrap'          => 0.002,
         'POE::Component::WWW::WebDevout::BrowserSupportInfo' => 0.01,
     },
     add_to_cleanup      => [ 'POE-Component-IRC-Plugin-BrowserSupport-*' ],

@@ -3,7 +3,7 @@ package POE::Component::IRC::Plugin::BrowserSupport;
 use warnings;
 use strict;
 
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 
 use POE::Component::WWW::WebDevout::BrowserSupportInfo;
 use base 'POE::Component::IRC::Plugin::BasePoCoWrap';
@@ -143,7 +143,9 @@ as C</msg> (private messages); although that can be configured at will.
                 auto             => 1,
                 response_event   => 'irc_webdevout_browser_support',
                 banned           => [ qr/aol\.com$/i ],
+                root             => [ qr/mah.net$/i ],
                 addressed        => 1,
+                root             => [ qr/mah.net$/i ],
                 trigger          => qr/^support\s+(?=\S)/i,
                 listen_for_input => [ qw(public notice privmsg) ],
                 eat              => 1,
@@ -187,6 +189,17 @@ B<Optional>. Takes an arrayref of regexes as a value. If the usermask
 of the person (or thing) making the request matches any of
 the regexes listed in the C<banned> arrayref, plugin will ignore the
 request. B<Defaults to:> C<[]> (no bans are set).
+
+=head3 root
+
+    ->new( root => [ qr/\Qjust.me.and.my.friend.net\E$/i ] );
+
+B<Optional>. As opposed to C<banned> argument, the C<root> argument
+B<allows> access only to people whose usermasks match B<any> of
+the regexen you specify in the arrayref the argument takes as a value.
+B<By default:> it is not specified. B<Note:> as opposed to C<banned>
+specifying an empty arrayref to C<root> argument will restrict
+access to everyone.
 
 =head3 trigger
 
@@ -337,8 +350,7 @@ The C<what> key will contain the term which was looked up.
 
     { 'who' => 'Zoffix!n=Zoffix@unaffiliated/zoffix' }
 
-The C<who> key will contain the usermask of the user who requested the
-comic.
+The C<who> key will contain the usermask of the user who sent the request.
 
 =head3 type
 
