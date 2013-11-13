@@ -1,5 +1,7 @@
 POE-Component-IRC-Plugin-BrowserSupport
 
+Lookup browser support for CSS/HTML/JS from IRC
+
 INSTALLATION
 
 To install this module, run the following commands:

@@ -3,11 +3,11 @@
 use strict;
 use warnings;
 
-use lib '../lib';
+use lib qw(../lib  lib);
 use POE qw(Component::IRC  Component::IRC::Plugin::BrowserSupport);
 
 my $irc = POE::Component::IRC->spawn(
-    nick        => 'SupportBot',
+    nick        => 'ZofSupportBot',
     server      => 'irc.freenode.net',
     port        => 6667,
     ircname     => 'BrowserSupport Bot',

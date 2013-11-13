@@ -3,7 +3,7 @@ package POE::Component::IRC::Plugin::BrowserSupport;
 use warnings;
 use strict;
 
-our $VERSION = '0.002';
+our $VERSION = '0.003';
 
 use POE::Component::WWW::WebDevout::BrowserSupportInfo;
 use base 'POE::Component::IRC::Plugin::BasePoCoWrap';
@@ -32,8 +32,9 @@ sub _make_response_message {
     }
     else {
         my $results = join ' | ',
-                        map { "$_: $in_ref->{results}{$_}" }
-                            sort keys %{ $in_ref->{results} };
+                        map { "$_: ${\(defined $in_ref->{results}{$_}
+                                ? $in_ref->{results}{$_} : '')}"
+                            } sort keys %{ $in_ref->{results} };
 
         return [ "($what) $in_ref->{uri_info}   $results" ];
     };
@@ -71,6 +72,7 @@ sub _make_poco_call {
 1;
 __END__
 
+=encoding utf8
 
 =head1 NAME
 

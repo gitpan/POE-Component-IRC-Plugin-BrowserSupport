@@ -14,7 +14,9 @@ my $builder = Module::Build->new(
         'Carp'                                               => 1.04,
         'POE::Component::IRC::Plugin::BasePoCoWrap'          => 0.002,
         'POE::Component::WWW::WebDevout::BrowserSupportInfo' => 0.01,
+        'perl' => '5.006',
     },
+    configure_requires => { 'Module::Build' => 0 },
     add_to_cleanup      => [ 'POE-Component-IRC-Plugin-BrowserSupport-*' ],
     create_makefile_pl => 'traditional',
 );
